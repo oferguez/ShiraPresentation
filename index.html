@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fun Facts About Kangaroos</title>
+    <title>Kangaroo Fun for Shira! 🦘</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -14,50 +14,107 @@
         h1 {
             color: #ff4500;
         }
-        .fact {
-            background-color: #fff3cd;
-            padding: 15px;
-            margin: 10px auto;
+        .fact-container {
+            margin: 20px auto;
             width: 60%;
+            padding: 15px;
+            background-color: #fff3cd;
             border-radius: 10px;
             box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+            position: relative;
         }
-        img {
-            width: 50%;
-            border-radius: 10px;
+        .fact {
+            display: none; /* Initially hidden */
+            font-size: 18px;
+        }
+        button {
             margin-top: 10px;
+            padding: 10px 15px;
+            font-size: 16px;
+            background-color: #ff4500;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #e63900;
+        }
+        .well-done {
+            display: none;
+            font-size: 24px;
+            color: green;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-weight: bold;
+            animation: bounce 1s infinite;
+        }
+        @keyframes bounce {
+            0%, 100% { transform: translate(-50%, -50%) scale(1); }
+            50% { transform: translate(-50%, -50%) scale(1.2); }
         }
     </style>
 </head>
 <body>
-    <h1>🦘 Amazing Kangaroos! 🦘</h1>
-    <img src="https://upload.wikimedia.org/wikipedia/commons/6/6a/Australian_Kangaroo.jpg" alt="A Kangaroo">
+
+    <h1>🦘 Kangaroo Fun for Shira! 🦘</h1>
+    <img src="https://upload.wikimedia.org/wikipedia/commons/6/6a/Australian_Kangaroo.jpg" alt="A Kangaroo" width="50%">
     
-    <div class="fact">
+    <div class="fact-container">
         <h2>What is a Kangaroo?</h2>
-        <p>Kangaroos are big, strong animals that live in Australia. They have powerful back legs and love to hop around!</p>
+        <p><button onclick="revealFact(0)">Click to reveal! 🎉</button></p>
+        <p class="fact">Kangaroos are big, strong animals that live in Australia. They have powerful back legs and love to hop around!</p>
+        <div class="well-done">🎊 Well done, Shira! 🎊</div>
     </div>
 
-    <div class="fact">
+    <div class="fact-container">
         <h2>They Can Jump Super High! 🚀</h2>
-        <p>Kangaroos can jump as high as **3 meters (10 feet)** in one leap! That's like jumping over a car! 🚗💨</p>
+        <p><button onclick="revealFact(1)">Click to reveal! 🎉</button></p>
+        <p class="fact">Kangaroos can jump as high as <b>3 meters (10 feet)</b> in one leap! That's like jumping over a car! 🚗💨</p>
+        <div class="well-done">🎊 Well done, Shira! 🎊</div>
     </div>
 
-    <div class="fact">
+    <div class="fact-container">
         <h2>Baby Kangaroos are Called Joeys 🍼</h2>
-        <p>A baby kangaroo is called a **joey**. It stays inside its mum’s pouch until it’s big enough to hop on its own!</p>
+        <p><button onclick="revealFact(2)">Click to reveal! 🎉</button></p>
+        <p class="fact">A baby kangaroo is called a <b>joey</b>. It stays inside its mum’s pouch until it’s big enough to hop on its own!</p>
+        <div class="well-done">🎊 Well done, Shira! 🎊</div>
     </div>
 
-    <div class="fact">
+    <div class="fact-container">
         <h2>Kangaroos Can’t Walk Backwards! 🚷</h2>
-        <p>Kangaroos can hop forward really fast, but they **can’t walk backwards**. That’s because of their big, strong tails!</p>
+        <p><button onclick="revealFact(3)">Click to reveal! 🎉</button></p>
+        <p class="fact">Kangaroos can hop forward really fast, but they <b>can’t walk backwards</b>. That’s because of their big, strong tails!</p>
+        <div class="well-done">🎊 Well done, Shira! 🎊</div>
     </div>
 
-    <div class="fact">
+    <div class="fact-container">
         <h2>They Love to Live in Groups 🦘🦘🦘</h2>
-        <p>Kangaroos live in **big groups called mobs**. A mob can have 50 or more kangaroos all hanging out together!</p>
+        <p><button onclick="revealFact(4)">Click to reveal! 🎉</button></p>
+        <p class="fact">Kangaroos live in <b>big groups called mobs</b>. A mob can have 50 or more kangaroos all hanging out together!</p>
+        <div class="well-done">🎊 Well done, Shira! 🎊</div>
     </div>
 
-    <h2>Hope You Liked These Fun Facts! 🎉</h2>
+    <script>
+        function revealFact(index) {
+            let facts = document.querySelectorAll(".fact");
+            let messages = document.querySelectorAll(".well-done");
+            let buttons = document.querySelectorAll("button");
+
+            facts[index].style.display = "block"; // Show the fact
+            messages[index].style.display = "block"; // Show the "Well done" message
+            
+            // Remove the button after clicking
+            buttons[index].style.display = "none";
+
+            // Hide the "Well done" message after 2 seconds
+            setTimeout(() => {
+                messages[index].style.display = "none";
+            }, 2000);
+        }
+    </script>
+
 </body>
 </html>
