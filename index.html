@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kangaroo Fun for Shira! 🦘✨</title>
+    <title>Kangaroo Fun for Shira! 🦘🎊</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -25,7 +25,7 @@
             overflow: hidden;
         }
         .fact {
-            display: none; /* Initially hidden */
+            display: none;
             font-size: 18px;
         }
         button {
@@ -45,53 +45,33 @@
             display: none;
             font-size: 24px;
             color: green;
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
             font-weight: bold;
             animation: bounce 1s infinite;
         }
         @keyframes bounce {
-            0%, 100% { transform: translate(-50%, -50%) scale(1); }
-            50% { transform: translate(-50%, -50%) scale(1.2); }
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.2); }
         }
 
-        /* Sparkles Effect */
-        .sparkles {
+        /* Confetti */
+        .confetti {
             position: absolute;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-        }
-        .sparkle {
-            position: absolute;
-            width: 10px;
+            width: 6px;
             height: 10px;
-            background-color: gold;
-            border-radius: 50%;
-            opacity: 0;
-            animation: sparkle 1s ease-out;
+            background-color: red;
+            opacity: 0.7;
+            transform: rotate(30deg);
+            animation: fall 2s ease-out forwards;
         }
-        @keyframes sparkle {
-            0% {
-                opacity: 1;
-                transform: scale(0.5);
-            }
-            50% {
-                opacity: 0.8;
-                transform: scale(1.2);
-            }
-            100% {
-                opacity: 0;
-                transform: scale(0);
-            }
+        @keyframes fall {
+            0% { transform: translateY(0) rotate(0); }
+            100% { transform: translateY(150px) rotate(360deg); opacity: 0; }
         }
     </style>
 </head>
 <body>
 
-    <h1>🦘 Kangaroo Fun for Shira! ✨</h1>
+    <h1>🦘 Kangaroo Fun for Shira! 🎊</h1>
     <img src="k.jpg" alt="A Kangaroo" width="50%">
     
     <div class="fact-container">
@@ -99,7 +79,6 @@
         <p><button onclick="revealFact(0)">Click to reveal! 🎉</button></p>
         <p class="fact">Kangaroos are big, strong animals that live in Australia. They have powerful back legs and love to hop around!</p>
         <div class="well-done">🎊 Well done, Shira! 🎊</div>
-        <div class="sparkles"></div>
     </div>
 
     <div class="fact-container">
@@ -107,7 +86,6 @@
         <p><button onclick="revealFact(1)">Click to reveal! 🎉</button></p>
         <p class="fact">Kangaroos can jump as high as <b>3 meters (10 feet)</b> in one leap! That's like jumping over a car! 🚗💨</p>
         <div class="well-done">🎊 Well done, Shira! 🎊</div>
-        <div class="sparkles"></div>
     </div>
 
     <div class="fact-container">
@@ -115,7 +93,6 @@
         <p><button onclick="revealFact(2)">Click to reveal! 🎉</button></p>
         <p class="fact">A baby kangaroo is called a <b>joey</b>. It stays inside its mum’s pouch until it’s big enough to hop on its own!</p>
         <div class="well-done">🎊 Well done, Shira! 🎊</div>
-        <div class="sparkles"></div>
     </div>
 
     <div class="fact-container">
@@ -123,7 +100,6 @@
         <p><button onclick="revealFact(3)">Click to reveal! 🎉</button></p>
         <p class="fact">Kangaroos can hop forward really fast, but they <b>can’t walk backwards</b>. That’s because of their big, strong tails!</p>
         <div class="well-done">🎊 Well done, Shira! 🎊</div>
-        <div class="sparkles"></div>
     </div>
 
     <div class="fact-container">
@@ -131,7 +107,6 @@
         <p><button onclick="revealFact(4)">Click to reveal! 🎉</button></p>
         <p class="fact">Kangaroos live in <b>big groups called mobs</b>. A mob can have 50 or more kangaroos all hanging out together!</p>
         <div class="well-done">🎊 Well done, Shira! 🎊</div>
-        <div class="sparkles"></div>
     </div>
 
     <script>
@@ -139,14 +114,14 @@
             let facts = document.querySelectorAll(".fact");
             let messages = document.querySelectorAll(".well-done");
             let buttons = document.querySelectorAll("button");
-            let sparklesContainers = document.querySelectorAll(".sparkles");
+            let containers = document.querySelectorAll(".fact-container");
 
             facts[index].style.display = "block"; // Show the fact
             messages[index].style.display = "block"; // Show "Well done, Shira!"
             buttons[index].style.display = "none"; // Hide the button
 
-            // Create sparkles effect
-            createSparkles(sparklesContainers[index]);
+            // Trigger confetti effect
+            createConfetti(containers[index]);
 
             // Hide "Well done" message after 2 seconds
             setTimeout(() => {
@@ -154,19 +129,28 @@
             }, 2000);
         }
 
-        function createSparkles(container) {
-            for (let i = 0; i < 15; i++) {
-                let sparkle = document.createElement("div");
-                sparkle.classList.add("sparkle");
-                sparkle.style.left = Math.random() * 100 + "%";
-                sparkle.style.top = Math.random() * 100 + "%";
-                sparkle.style.animationDuration = (Math.random() * 0.5 + 0.5) + "s";
-                container.appendChild(sparkle);
+        function createConfetti(container) {
+            for (let i = 0; i < 30; i++) { // Create 30 confetti pieces
+                let confetti = document.createElement("div");
+                confetti.classList.add("confetti");
 
-                // Remove sparkle after animation ends
+                // Random position within the container
+                confetti.style.left = Math.random() * 100 + "%";
+                confetti.style.top = "0";
+
+                // Random colors
+                let colors = ["red", "blue", "yellow", "green", "pink", "purple", "orange"];
+                confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+
+                // Random rotation
+                confetti.style.transform = `rotate(${Math.random() * 360}deg)`;
+
+                container.appendChild(confetti);
+
+                // Remove confetti after animation ends
                 setTimeout(() => {
-                    sparkle.remove();
-                }, 1000);
+                    confetti.remove();
+                }, 2000);
             }
         }
     </script>
